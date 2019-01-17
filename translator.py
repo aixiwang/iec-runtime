@@ -276,7 +276,14 @@ def dump_obj(obj, words):
 
 # translator
 obj = open('./plc.bin', 'wb');
-for line in sys.stdin:
+f = open(sys.argv[1],'r')
+while True:
+    line = f.readline()
+    if len(line) == 0 or line == None:
+		break
+
     words = line.strip('\n').split();
     if words and (words[0] != '#'):
         dump_obj(obj, words);
+
+print('plc.bin generated')
